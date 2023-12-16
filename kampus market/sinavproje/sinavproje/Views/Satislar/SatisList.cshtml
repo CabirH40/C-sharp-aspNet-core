@@ -1,0 +1,36 @@
+﻿@model IEnumerable<sinavproje.models.modelmarkakategori>
+
+@{
+    ViewBag.Title = "SatisList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>sepet id</th>
+            <th>urun id</th>
+            <th>Toplam Fiyat</th>
+            <th>Tarih</th>
+            <th>Saat</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@(item.satistables?.sepetId)</td>
+            <td>@(item.satistables?.urunId)</td>
+            <td>@(item.satistables?.toplamFiyat)</td>
+            <td>@(item.satistables?.tarih)</td>
+            <td>@(item.satistables?.saat)</td>
+            <td>
+                <a href="@Url.Action("SatisDelete", "Satislar", new { id = item.satistables?.Id })" class="btn btn-danger">Delete</a>
+                <a href="@Url.Action("SatisUpdate", "Satislar", new { id = item.satistables?.Id })" class="btn btn-primary">Update</a>
+            </td>
+        </tr>
+        }
+    <td><a href="/Satislar/Index" class="btn btn-primary">Insert</a></td>
+    </tbody>
+</table>

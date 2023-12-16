@@ -1,0 +1,170 @@
+﻿@model IEnumerable<sinavproje.models.modelmarkakategori>
+@{
+    decimal totalPrice = 0;
+    ViewBag.Title = "sepetMusteri";
+    Layout = "~/Views/Shared/_LayoutWebPages.cshtml";
+}
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="containeras">
+            <h1>Sepetim</h1>
+
+            @{
+                if (Session["UserName"] == null)
+                {
+                    <h5 class="alert alert-warning">
+                        Önce <a href="/Login/login" class="text-dark">Giriş</a> Yapmanız Lazım
+                    </h5>
+                }
+
+            }
+
+            @if (Model.Any())
+            {
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Ürün</th>
+                            <th scope="col">Resim</th>
+                            <th scope="col">Adet</th>
+                            <th scope="col">Fiyat</th>
+                            <th scope="col">Toplam</th>
+                            <th scope="col">Miktar</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                            </td>
+                            <td>@item.uruntables.urunAdi</td>
+                            <td><img src="@Url.Content("~/webPages/01/assets/imgurun/" + item.uruntables.img2)" style="width:55px;" ></td>
+                            <td>
+                                <span class="quantity">@item.sepettables.miktar</span>
+                            </td>
+                            <td>
+                                <span> @item.sepettables.birimfiyat TL</span>
+                            </td>
+                            <td style="font-weight: bold; color:rgb(113, 16, 16)">
+                                @item.sepettables.toplamfiyat TL
+                            </td>
+
+
+
+
+
+                            <td>
+                                <div>
+                                    @Html.ActionLink("-", "Azalt", new { id = item.sepettables.Id }, new { @class = "btn btn-secondary btn-sm azalt" })
+                                </div>
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(x => item.sepettables.miktar, new { @class = "txt", @Name = "miktar" })
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.ActionLink("+", "Artir", new { id = item.sepettables.Id }, new { @class = "btn btn-secondary btn-sm azalt" })
+                                </div>
+                            </td>
+
+
+
+
+
+
+                            <td>
+                                <a href="@Url.Action("sepetDelete", "sepet", new { id = item.sepettables?.Id })" class="btn btn-outline-dark btn-sm">
+                                    İptal Et
+                                </a>
+                            </td>
+                        </tr>
+                            totalPrice += (decimal)item.sepettables.toplamfiyat;
+                        }
+                    </tbody>
+                </table>
+
+                <a href="/urunlar/product/" class="btn btn-outline-dark float-right">Alışverişi Devam Et</a>
+
+                <br>
+                <h5>Total Price: @totalPrice TL</h5>
+            }
+            else
+            {
+                <h5 class="alert alert-warning">
+                    Sepete Herhangi Bir Ürün Eklemediniz <a href="/urunlar/product/" class="text-dark">Ürünler</a>
+                </h5>
+            }
+            @if (Session["UserName"] != null)
+            {
+                <div id="odeFormContainer" class="hidden">
+                    @foreach (var item in Model)
+                    {
+                        @Html.Hidden("sepetId", item.sepettables.Id)
+                    }
+                </div>
+
+                <button id="odeButton" class="btn btn-outline-dark btn-sm">Öde</button>
+
+                <div id="addressModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Adres Bilgileri</h5>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="address">Adres:</label>
+                                        <input type="text" class="form-control" id="address">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="odeEtButton" type="button" class="btn btn-primary">Öde</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script>
+                    $(document).ready(function () {
+                        $('#odeButton').click(function () {
+                            $('#addressModal').modal('show');
+                        });
+
+                        $('#odeEtButton').click(function () {
+                            var sepetIdArray = [];
+                            $('#odeFormContainer input[name="sepetId"]').each(function () {
+                                sepetIdArray.push($(this).val());
+                            });
+
+                            $.ajax({
+                                url: '/Satislar/SatisInsertAll',
+                                type: 'POST',
+                                traditional: true,
+                                data: { sepetId: sepetIdArray },
+                                success: function (response) {
+                                    alert("Siparişiniz alındı.");
+                                    // Handle success response
+                                },
+                                error: function (xhr, status, error) {
+                                    // Handle error
+                                }
+                            });
+                        });
+                    });
+                </script>
+            }
+        </div>
+    </div>
+</div>

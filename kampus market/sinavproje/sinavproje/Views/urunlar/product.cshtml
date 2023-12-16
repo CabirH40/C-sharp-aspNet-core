@@ -1,0 +1,47 @@
+﻿
+@model IEnumerable<sinavproje.models.modelmarkakategori>
+@{
+    ViewBag.Title = "product";
+    Layout = "~/Views/Shared/_LayoutWebPages.cshtml";
+}
+
+
+
+
+
+
+
+<div class="containera mt-3  me-3 m-xl-5">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 mt-4">
+                <div class="card">
+                    <!-- محتوى العنصر هنا -->
+                </div>
+                <a href="@Url.Action("Single_Product", "urunlar", new { id = item.uruntables.Id })">
+                    <img src="@Url.Content("~/webPages/01/assets/imgurun/" + item.uruntables.img2)" class="card-img-top" alt="...">
+
+                </a>
+                <div class="card-body">
+                    <br />
+                    <h5 class="card-title"> @item.markatables.markaAdi</h5>
+
+                    <p class="card-text">Kategori @item.uruntables.urunAdi</p>
+
+
+
+                    <div class="pricehemen">
+                        <button class="btns add-to-cart hvr-float-shadow" onclick="location.href='@Url.Action("hemenlal", "urunlar", new { id = item.uruntables.Id })'">Hemen Al</button>
+                        <a class="btn btn-dark hvr-wobble-skew " style="margin-top:9px; margin-left:99px">@item.uruntables.satsFiyati TL</a>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+
+
+
+

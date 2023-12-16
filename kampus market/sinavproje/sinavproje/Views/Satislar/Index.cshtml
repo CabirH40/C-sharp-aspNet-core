@@ -1,0 +1,30 @@
+﻿@model sinavproje.Models.dbSatislar
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("SatisInsert", "Satislar", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>sepet ID:</label>
+        @Html.DropDownListFor(x => x.sepetId, (List<SelectListItem>)ViewBag.sepet, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Toplam Fiyat:</label>
+        @Html.DropDownListFor(x => x.toplamFiyat, (List<SelectListItem>)ViewBag.sepetler, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Tarih:</label>
+        @Html.DropDownListFor(x => x.tarih, (List<SelectListItem>)ViewBag.sepet, new { @class = "form-control", type = "date" })
+    </div>
+    <div class="form-group">
+        <label>Saat:</label>
+        @Html.DropDownListFor(x => x.saat, (List<SelectListItem>)ViewBag.sepet, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Insert</button>
+    </div>
+}

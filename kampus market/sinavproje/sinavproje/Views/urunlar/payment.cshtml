@@ -1,0 +1,73 @@
+﻿@model IEnumerable<sinavproje.models.modelmarkakategori>
+
+@{
+    ViewBag.Title = "payment";
+    Layout = "~/Views/Shared/_LayoutWebPages.cshtml";
+}
+
+<div class="signup-form">
+    <h3>Ödeme</h3>
+    <br>
+    <form class="form" method="POST">
+
+        <div class="input-box">
+            <label for="name">Ad</label>
+            <input type="text" name="first_name" id="first_name">
+        </div>
+
+        <div class="input-box">
+            <label for="surname">Soyad</label>
+            <input type="text" name="last_name" id="last_name">
+        </div>
+
+        <div class="input-box">
+            <label for="email">Email Adres</label>
+            <input type="email" name="email" id="email">
+        </div>
+
+        <div class="input-box">
+            <label for="address">Adres</label>
+            <input type="text" id="address" name="address">
+            <br>
+        </div>
+
+        @if (Model != null)
+        {
+            <div id="odeFormContainer" class="hidden">
+                @foreach (var item in Model)
+                {
+                    @Html.Hidden("sepetId", item.sepettables.Id)
+                }
+            </div>
+        }
+
+        <button id="odeButton" class="btn btn-outline-dark btn-sm">Öde</button>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#odeButton').click(function () {
+                    var sepetIdArray = [];
+                    $('#odeFormContainer input[name="sepetId"]').each(function () {
+                        sepetIdArray.push($(this).val());
+                    });
+
+                    $.ajax({
+                        url: '/Satislar/SatisInsertAll',
+                        type: 'POST',
+                        traditional: true,
+                        data: { sepetId: sepetIdArray },
+                        success: function (response) {
+                            // Handle success response
+                        },
+                        error: function (xhr, status, error) {
+                            // Handle error
+                        }
+                    });
+                });
+            });
+        </script>
+
+        <br>
+    </form>
+</div>

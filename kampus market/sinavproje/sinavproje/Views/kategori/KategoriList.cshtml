@@ -1,0 +1,30 @@
+﻿@model List<sinavproje.Models.dbkategori>
+
+@{
+    ViewBag.Title = "KategoriList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table>
+    <tr>
+        <th>kategori Adı:</th>
+        <th>Acıklama:</th>
+        <th>Insert</th>
+        <th>Delete</th>
+        <th>Update</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.kategoriAdi</td>
+    <td>@item.aciklama</td>
+    <td><a href="/Kategori/Index" class="btn btn-primary">Insert</a></td>
+    <td><a href="/Kategori/kategoriDelete/@item.Id" class="btn btn-danger">Delete</a></td>
+    <td><a href="/Kategori/kategoriUpdate/@item.Id" class="btn btn-success">Update</a></td>
+
+</tr>
+
+    }
+</table>
+

@@ -1,0 +1,27 @@
+﻿@model sinavproje.Models.dbkategori
+
+
+@{
+    ViewBag.Title = "kategoriUpdate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("kategoriUpdate", "kategori", FormMethod.Post))
+{
+    <div class="container">
+        <div class="form-group">
+            <label>kategori Adi</label>
+            @Html.TextBoxFor(x => x.kategoriAdi, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Aciklama</label>
+            @Html.TextAreaFor(x => x.aciklama, new { @class = "form-control", @rows = 4 })
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Update</button>
+       
+        </div>
+    </div>
+
+}

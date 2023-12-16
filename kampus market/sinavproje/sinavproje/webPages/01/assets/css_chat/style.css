@@ -1,0 +1,223 @@
+﻿/* تنسيق الهيدر */
+header {
+    background-color: #f8f8f8;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-container {
+    width: 150px;
+}
+
+.logo-img {
+    width: 100%;
+    height: auto;
+}
+
+.icons {
+    display: flex;
+}
+
+.icon {
+    margin-left: 10px;
+}
+
+/* تنسيق النافبار */
+nav {
+    background-color: #f8f8f8;
+    padding: 10px;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+li {
+    margin: 0 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #3c3633;
+}
+
+.active {
+    font-weight: bold;
+}
+
+/* تنسيق عناصر البطاقة */
+.card {
+    margin-bottom: 20px;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.pricehemen {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn {
+    padding: 5px 10px;
+    color: #fff;
+}
+
+.hvr-buzz-out:hover {
+    animation-name: hvr-buzz-out;
+    animation-duration: 0.75s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.hvr-wobble-skew:hover {
+    animation-name: hvr-wobble-skew;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes hvr-buzz-out {
+    25% {
+        transform: translateX(-4px) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateX(4px) rotate(5deg);
+    }
+
+    75% {
+        transform: translateX(-4px) rotate(-5deg);
+    }
+
+    100% {
+        transform: translateX(4px) rotate(5deg);
+    }
+}
+
+@keyframes hvr-wobble-skew {
+    16.65% {
+        transform: skewX(-12deg);
+    }
+
+    33.3% {
+        transform: skewX(6deg);
+    }
+
+    49.95% {
+        transform: skewX(-4deg);
+    }
+
+    66.6% {
+        transform: skewX(2deg);
+    }
+
+    83.25% {
+        transform: skewX(-1deg);
+    }
+
+    100% {
+        transform: skewX(0);
+    }
+}
+
+/* تنسيق الفوتر */
+footer {
+    background-color: #f8f8f8;
+    padding: 20px;
+}
+
+.newsletter {
+    background-color: #3c3633;
+    color: #fff;
+    padding: 20px;
+}
+
+.hm-footer-widget {
+    margin-bottom: 20px;
+}
+
+.hm-foot-title {
+    margin-bottom: 10px;
+}
+
+.hm-foot-menu ul {
+    padding: 0;
+}
+
+    .hm-foot-menu ul li {
+        margin-bottom: 5px;
+    }
+
+.foot-email-box {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+    .foot-email-box input {
+        flex: 1;
+        padding: 5px;
+        border: none;
+    }
+
+.foot-email-subscribe {
+    background-color: #555;
+    padding: 5px;
+    cursor: pointer;
+}
+
+    .foot-email-subscribe span {
+        color: #fff;
+    }
+
+/* استجابة الموقع */
+@media screen and (max-width: 767px) {
+    .logo-container {
+        width: 100px;
+    }
+
+    .icons {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .icon {
+        margin: 5px 0;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav li {
+        margin: 5px;
+    }
+
+    .pricehemen {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

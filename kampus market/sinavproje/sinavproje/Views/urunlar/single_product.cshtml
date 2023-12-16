@@ -1,0 +1,47 @@
+﻿@model List<sinavproje.models.modelmarkakategori>
+
+
+@{
+    ViewBag.Title = "single_product";
+    Layout = "~/Views/Shared/_LayoutWebPages.cshtml";
+}
+
+
+
+<div class="container mt-3">
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 m-4">
+                <div class="card">
+                    <img src="@Url.Content("~/webPages/01/assets/imgurun/" + item.uruntables.img2)" class="card-img-top" alt="...">
+                </div>
+            </div>
+            <div class="col-md-5 mt-4">
+                <div class="card-body">
+
+                    <h2>@item.markatables.markaAdi</h2>
+                    <p>Brand: @item.uruntables.urunAdi</p>
+                    <p class="card-text">birim @item.birimtables.birim</p>
+                    <p>Description: @item.markatables.aciklama</p>
+                    <p class="card-text">birim @item.uruntables.uretimTarih.Value.ToString("mm-dd-yyyy")</p>
+                    <p class="card-text">birim @item.uruntables.TTE.Value.ToString("MM-dd-yyyy")</p>
+                    <div class="product-price">
+                        <h3>@item.uruntables.satsFiyati TL</h3>
+                    </div>
+                    <div class="btn-container">
+                        <button class="btns add-to-cart hvr-float-shadow" onclick="location.href='@Url.Action("sepetinsert", "urunlar", new { id = item.uruntables.Id })'">Sepete Ekle</button>
+                        <button class="btns add-to-cart hvr-float-shadow" onclick="location.href='@Url.Action("hemenlal", "urunlar", new { id = item.uruntables.Id })'">Hemen Al</button>
+
+
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
+
+

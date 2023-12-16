@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="stokTakip02Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="dbbirim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="birim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="aciklama" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="dburunlers" Relationship="Self.FK_dburunler_dbbirim" FromRole="dbbirim" ToRole="dburunler" />
+  </EntityType>
+  <EntityType Name="dbkategori">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kategoriAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="aciklama" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="dbmarkas" Relationship="Self.FK_dbmarka_dbkategori" FromRole="dbkategori" ToRole="dbmarka" />
+    <NavigationProperty Name="dbsepets" Relationship="Self.FK_dbsepet_dbkategori" FromRole="dbkategori" ToRole="dbsepet" />
+    <NavigationProperty Name="dburunlers" Relationship="Self.FK_dburunler_dbkategori" FromRole="dbkategori" ToRole="dburunler" />
+  </EntityType>
+  <EntityType Name="dbmarka">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kategoriId" Type="Int32" />
+    <Property Name="markaAdi" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="aciklama" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="img1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="dbkategori" Relationship="Self.FK_dbmarka_dbkategori" FromRole="dbmarka" ToRole="dbkategori" />
+    <NavigationProperty Name="dburunlers" Relationship="Self.FK_dburunler_dbmarka" FromRole="dbmarka" ToRole="dburunler" />
+  </EntityType>
+  <EntityType Name="dbmusteri">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="musteriAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="telefon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="resim" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="kayitTarihi" Type="DateTime" Precision="0" />
+    <Property Name="puan" Type="Decimal" Precision="2" Scale="1" />
+    <Property Name="aciklama" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="adres" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="sehirId" Type="Int32" />
+    <Property Name="ilceId" Type="Int32" />
+    <NavigationProperty Name="dbsepets" Relationship="Self.FK_dbsepet_dbmusteri" FromRole="dbmusteri" ToRole="dbsepet" />
+  </EntityType>
+  <EntityType Name="dbSatislar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="urunId" Type="Int32" />
+    <Property Name="sepetId" Type="Int32" />
+    <Property Name="toplamFiyat" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="tarih" Type="DateTime" Precision="0" />
+    <Property Name="saat" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="dbsepet" Relationship="Self.FK_dbSatislar_dbsepet" FromRole="dbSatislar" ToRole="dbsepet" />
+    <NavigationProperty Name="dburunler" Relationship="Self.FK_dbSatislar_dburunler" FromRole="dbSatislar" ToRole="dburunler" />
+  </EntityType>
+  <EntityType Name="dbsepet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="urunId" Type="Int32" />
+    <Property Name="kategoriId" Type="Int32" />
+    <Property Name="musteriId" Type="Int32" />
+    <Property Name="tarih" Type="DateTime" Precision="0" />
+    <Property Name="saat" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="dbkategori" Relationship="Self.FK_dbsepet_dbkategori" FromRole="dbsepet" ToRole="dbkategori" />
+    <NavigationProperty Name="dbmusteri" Relationship="Self.FK_dbsepet_dbmusteri" FromRole="dbsepet" ToRole="dbmusteri" />
+    <NavigationProperty Name="dbSatislars" Relationship="Self.FK_dbSatislar_dbsepet" FromRole="dbsepet" ToRole="dbSatislar" />
+    <NavigationProperty Name="dburunler" Relationship="Self.FK_dbsepet_dburunler" FromRole="dbsepet" ToRole="dburunler" />
+  </EntityType>
+  <EntityType Name="dburunler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kategoriId" Type="Int32" />
+    <Property Name="markaId" Type="Int32" />
+    <Property Name="birimId" Type="Int32" />
+    <Property Name="urunId" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="barkodNo" Type="Binary" MaxLength="11" FixedLength="false" />
+    <Property Name="alisFiyati" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="satsFiyati" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="KDV" Type="Int32" />
+    <Property Name="tarih" Type="DateTime" Precision="0" />
+    <Property Name="uretimTarih" Type="DateTime" Precision="0" />
+    <Property Name="TTE" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="dbbirim" Relationship="Self.FK_dburunler_dbbirim" FromRole="dburunler" ToRole="dbbirim" />
+    <NavigationProperty Name="dbkategori" Relationship="Self.FK_dburunler_dbkategori" FromRole="dburunler" ToRole="dbkategori" />
+    <NavigationProperty Name="dbmarka" Relationship="Self.FK_dburunler_dbmarka" FromRole="dburunler" ToRole="dbmarka" />
+    <NavigationProperty Name="dbSatislars" Relationship="Self.FK_dbSatislar_dburunler" FromRole="dburunler" ToRole="dbSatislar" />
+    <NavigationProperty Name="dbsepets" Relationship="Self.FK_dbsepet_dburunler" FromRole="dburunler" ToRole="dbsepet" />
+  </EntityType>
+  <EntityType Name="dbuser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="userSurname" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="sehirId" Type="Int32" />
+    <Property Name="ilceId" Type="Int32" />
+    <Property Name="departmandId" Type="Int32" />
+    <Property Name="maas" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="izin" Type="Int32" />
+    <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="role" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_dburunler_dbbirim">
+    <End Role="dbbirim" Type="Self.dbbirim" Multiplicity="0..1" />
+    <End Role="dburunler" Type="Self.dburunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dbbirim">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="dburunler">
+        <PropertyRef Name="birimId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbmarka_dbkategori">
+    <End Role="dbkategori" Type="Self.dbkategori" Multiplicity="0..1" />
+    <End Role="dbmarka" Type="Self.dbmarka" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dbkategori">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="dbmarka">
+        <PropertyRef Name="kategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbsepet_dbkategori">
+    <End Role="dbkategori" Type="Self.dbkategori" Multiplicity="0..1" />
+    <End Role="dbsepet" Type="Self.dbsepet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dbkategori">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="dbsepet">
+        <PropertyRef Name="kategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dburunler_dbkategori">
+    <End Role="dbkategori" Type="Self.dbkategori" Multiplicity="0..1" />
+    <End Role="dburunler" Type="Self.dburunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dbkategori">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="dburunler">
+        <PropertyRef Name="kategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dburunler_dbmarka">
+    <End Role="dbmarka" Type="Self.dbmarka" Multiplicity="0..1" />
+    <End Role="dburunler" Type="Self.dburunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dbmarka">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="dburunler">
+        <PropertyRef Name="markaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbsepet_dbmusteri">
+    <End Role="dbmusteri" Type="Self.dbmusteri" Multiplicity="0..1" />
+    <End Role="dbsepet" Type="Self.dbsepet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dbmusteri">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="dbsepet">
+        <PropertyRef Name="musteriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbSatislar_dbsepet">
+    <End Role="dbsepet" Type="Self.dbsepet" Multiplicity="0..1" />
+    <End Role="dbSatislar" Type="Self.dbSatislar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dbsepet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="dbSatislar">
+        <PropertyRef Name="sepetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbSatislar_dburunler">
+    <End Role="dburunler" Type="Self.dburunler" Multiplicity="0..1" />
+    <End Role="dbSatislar" Type="Self.dbSatislar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dburunler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="dbSatislar">
+        <PropertyRef Name="urunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbsepet_dburunler">
+    <End Role="dburunler" Type="Self.dburunler" Multiplicity="0..1" />
+    <End Role="dbsepet" Type="Self.dbsepet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dburunler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="dbsepet">
+        <PropertyRef Name="urunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="stokTakip02Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="dbbirims" EntityType="Self.dbbirim" />
+    <EntitySet Name="dbkategoris" EntityType="Self.dbkategori" />
+    <EntitySet Name="dbmarkas" EntityType="Self.dbmarka" />
+    <EntitySet Name="dbmusteris" EntityType="Self.dbmusteri" />
+    <EntitySet Name="dbSatislars" EntityType="Self.dbSatislar" />
+    <EntitySet Name="dbsepets" EntityType="Self.dbsepet" />
+    <EntitySet Name="dburunlers" EntityType="Self.dburunler" />
+    <EntitySet Name="dbusers" EntityType="Self.dbuser" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_dburunler_dbbirim" Association="Self.FK_dburunler_dbbirim">
+      <End Role="dbbirim" EntitySet="dbbirims" />
+      <End Role="dburunler" EntitySet="dburunlers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbmarka_dbkategori" Association="Self.FK_dbmarka_dbkategori">
+      <End Role="dbkategori" EntitySet="dbkategoris" />
+      <End Role="dbmarka" EntitySet="dbmarkas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbsepet_dbkategori" Association="Self.FK_dbsepet_dbkategori">
+      <End Role="dbkategori" EntitySet="dbkategoris" />
+      <End Role="dbsepet" EntitySet="dbsepets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dburunler_dbkategori" Association="Self.FK_dburunler_dbkategori">
+      <End Role="dbkategori" EntitySet="dbkategoris" />
+      <End Role="dburunler" EntitySet="dburunlers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dburunler_dbmarka" Association="Self.FK_dburunler_dbmarka">
+      <End Role="dbmarka" EntitySet="dbmarkas" />
+      <End Role="dburunler" EntitySet="dburunlers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbsepet_dbmusteri" Association="Self.FK_dbsepet_dbmusteri">
+      <End Role="dbmusteri" EntitySet="dbmusteris" />
+      <End Role="dbsepet" EntitySet="dbsepets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbSatislar_dbsepet" Association="Self.FK_dbSatislar_dbsepet">
+      <End Role="dbsepet" EntitySet="dbsepets" />
+      <End Role="dbSatislar" EntitySet="dbSatislars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbSatislar_dburunler" Association="Self.FK_dbSatislar_dburunler">
+      <End Role="dburunler" EntitySet="dburunlers" />
+      <End Role="dbSatislar" EntitySet="dbSatislars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbsepet_dburunler" Association="Self.FK_dbsepet_dburunler">
+      <End Role="dburunler" EntitySet="dburunlers" />
+      <End Role="dbsepet" EntitySet="dbsepets" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

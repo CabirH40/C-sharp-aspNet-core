@@ -1,0 +1,42 @@
+﻿@model IEnumerable<sinavproje.models.modelmarkakategori>
+
+<!-- Your view code here -->
+
+@{
+    ViewBag.Title = "markaList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("markaUpdate", "Marka", FormMethod.Post))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Marka Adı</th>
+                <th>Kategori Adı</th>
+                <th>Açıklama</th>
+                <th>image</th>
+                <th>Delete</th>
+                <th>Update</th>
+                <th>View</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.markatables.markaAdi</td>
+                    <td>@item.kategoritables.kategoriAdi</td>
+                    <td>@item.markatables.aciklama</td>
+                    <td>@item.markatables.img1</td>
+                    <td><a href="/Marka/markaDelete/@item.markatables.Id" class="btn btn-danger">Delete</a></td>
+                    <td><a href="/Marka/markaUpdate/@item.markatables.Id" class="btn btn-success">Update</a></td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>}
+
+<div>
+    <a href="/Marka/Index" class="btn btn-primary btn-sm">Insert</a>
+   
+</div>

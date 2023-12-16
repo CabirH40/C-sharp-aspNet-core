@@ -1,0 +1,36 @@
+﻿@model IEnumerable<sinavproje.models.modelmarkakategori>
+
+@{
+    ViewBag.Title = "sepetList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>kategori id</th>
+            <th>musteri ID</th>
+            <th>urun Id</th>
+            <th>Tarih</th>
+            <th>Saat</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@(item.kategoritables?.kategoriAdi)</td>
+                <td>@(item.musteritables?.Id)</td>
+                <td>@(item.uruntables?.urunId)</td>
+                <td>@(item.sepettables.tarih)</td>
+                <td>@(item.sepettables.saat)</td>
+                <td>@(item.uruntables.satsFiyati)</td>
+                <td>
+                    <a href="@Url.Action("sepetDelete", "sepet", new { id = item.sepettables?.Id })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    <td><a href="/sepet/Index" class="btn btn-primary">Insert</a></td>
+    </tbody>
+</table>

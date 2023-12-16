@@ -1,0 +1,73 @@
+﻿@model sinavproje.Models.dburunler
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("urunInsert", "urunlar", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<div class="container">
+    <div class="form-group">
+        <label>Kategori Adı: </label>
+        @Html.DropDownListFor(x => x.kategoriId, (List<SelectListItem>)ViewBag.kategoriler, new { @class = "form-control", @name = "kategoriId" })
+    </div>
+    <div class="form-group">
+        <label>marka Adı: </label>
+        @Html.DropDownListFor(x => x.markaId, (List<SelectListItem>)ViewBag.markalar, new { @class = "form-control", @name = "kategoriId" })
+    </div>
+    <div class="form-group">
+        <label>birim Adı: </label>
+        @Html.DropDownListFor(x => x.birimId, (List<SelectListItem>)ViewBag.birimler, new { @class = "form-control", @name = "kategoriId" })
+    </div>
+
+
+    <div class="form-group">
+        <label>urun Adi: </label>
+        @Html.TextAreaFor(x => x.urunAdi, new { @class = "form-control", @rows = "3" })
+    </div>
+
+    <div class="form-group">
+        <label>barkod no: </label>
+        @Html.TextAreaFor(x => x.barkodNo, new { @class = "form-control", @rows = "3" })
+    </div>
+
+    <div class="form-group">
+        <label>Alış fiyatı: </label>
+        @Html.TextAreaFor(x => x.alisFiyati, new { @class = "form-control", @rows = "3" })
+    </div>
+
+    <div class="form-group">
+        <label>satış Fiyatı: </label>
+        @Html.TextAreaFor(x => x.satsFiyati, new { @class = "form-control", @rows = "3" })
+    </div>
+
+    <div class="form-group">
+        <label>KDV: </label>
+        @Html.TextAreaFor(x => x.KDV, new { @class = "form-control", @rows = "3" })
+    </div>
+
+    <div class="form-group">
+        <label>Tarih:</label>
+        @Html.TextBoxFor(x => x.tarih, new { @class = "form-control", type = "date" })
+    </div>
+    <div class="form-group">
+        <label>uertim tarih:</label>
+        @Html.TextBoxFor(x => x.uretimTarih, new { @class = "form-control", type = "date" })
+    </div>
+    <div class="form-group">
+        <label>TTE:</label>
+        @Html.TextBoxFor(x => x.TTE, new { @class = "form-control", type = "date" })
+    </div>
+    <div class="form-group">
+        <label>Image: </label>
+        <input type="file" name="file" id="file" style="width: 100%;" />
+    </div>
+
+
+
+    <div class="form-group">
+        <input type="submit" value="Upload Student Info" class="btn btn-primary" />
+    </div>
+</div>
+}

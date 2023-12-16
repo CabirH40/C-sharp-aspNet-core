@@ -1,0 +1,58 @@
+﻿@model IEnumerable<sinavproje.models.modelmarkakategori>
+
+<!-- Your view code here -->
+
+@{
+    ViewBag.Title = "urunList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("urunUpdate", "urunlar", FormMethod.Post))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Marka Adı</th>
+                <th>Kategori Adı</th>
+                <th>Birim</th>
+                <th>urunId</th>
+                <th>barkodNo</th>
+                <th>alisFiyati</th>
+                <th>satsFiyati</th>
+                <th>KDV</th>
+                <th>tarih</th>
+                <th>uretimTarih</th>
+                <th>TTE</th>
+                <th>resim</th>
+                <th>urunAdi</th>
+                <th>Delete</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.markatables.markaAdi</td>
+                <td>@item.kategoritables.kategoriAdi</td>
+                <td>@item.birimtables.birim</td>
+                <td>@item.uruntables.urunId</td>
+                <td>@item.uruntables.barkodNo</td>
+                <td>@item.uruntables.alisFiyati</td>
+                <td>@item.uruntables.satsFiyati</td>
+                <td>@item.uruntables.KDV</td>
+                <td>@item.uruntables.tarih</td>
+                <td>@item.uruntables.uretimTarih</td>
+                <td>@item.uruntables.TTE</td>
+                <td>@item.uruntables.img2</td>
+                <td>@item.uruntables.urunAdi</td>
+                <td><a href="/urunlar/urunDelete/@item.uruntables.Id" class="btn btn-danger">Delete</a></td>
+                <td><a href="/urunlar/urunUpdate/@item.uruntables.Id" class="btn btn-success">Update</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>}
+
+<div>
+    <a href="/urunlar/Index" class="btn btn-primary btn-sm">Insert</a>
+    <a href="/urunlar/product" class="btn btn-primary btn-sm">Views All</a>
+</div>

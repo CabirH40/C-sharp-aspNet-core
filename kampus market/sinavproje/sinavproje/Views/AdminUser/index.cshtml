@@ -1,0 +1,61 @@
+﻿@model sinavproje.Models.dbuser
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("userInsert", "AdminUser", FormMethod.Post))
+{
+    <div class="container">
+        <div class="form-group">
+            <label>userName : </label>
+            @Html.TextBoxFor(x => x.userName, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label>userSurname: </label>
+            @Html.TextBoxFor(x => x.userSurname, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label>sehirId: </label>
+            @Html.TextBoxFor(x => x.sehirId, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label>ilceId: </label>
+            @Html.TextBoxFor(x => x.ilceId, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label>departmandId: </label>
+            @Html.TextBoxFor(x => x.departmandId, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label>maas: </label>
+            @Html.TextBoxFor(x => x.maas, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label>izin: </label>
+            @Html.TextAreaFor(x => x.izin, new { @class = "form-control", @rows = 4 })
+        </div>
+
+        <div class="form-group">
+            <label>password: </label>
+            @Html.TextBoxFor(x => x.password, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label>role : </label>
+            @Html.TextBoxFor(x => x.role, new { @class = "form-control" })
+        </div>
+
+
+        <div class="form-group">
+            <button class="btn btn-primary">Insert</button>
+        </div>
+    </div>
+}

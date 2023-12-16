@@ -1,0 +1,41 @@
+﻿@model List<sinavproje.Models.login>
+
+
+@{
+    ViewBag.Title = "luserList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>userSurname</th>
+            <th>email</th>
+            <th>password</th>
+   
+            <th>Delete</th>
+            <th>Update</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.name</td>
+            <td>@item.username</td>
+            <td>@item.email</td>
+            <td>@item.password</td>
+
+
+
+            <td><a href="/Login/AuserDelete/@item.id" class="btn btn-danger">Delete</a></td>
+            <td><a href="/Login/loginUpdate/@item.id" class="btn btn-success">Update</a></td>
+
+        </tr>
+        }
+    <td><a href="/Login/Index" class="btn btn-primary">Insert</a></td>
+
+    </tbody>
+</table>

@@ -1,0 +1,58 @@
+﻿@model sinavproje.Models.dbmusteri
+
+@{
+    ViewBag.Title = "musteriUpdate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Update Muşteri</h2>
+
+@using (Html.BeginForm("musteriUpdate", "musteri", FormMethod.Post))
+{
+    <div class="container">
+        <div class="form-group">
+            <label>musteri Adi</label>
+            @Html.TextBoxFor(x => x.musteriAdi, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>telefon</label>
+            @Html.TextBoxFor(x => x.telefon, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>email</label>
+            @Html.TextBoxFor(x => x.email, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>resim</label>
+            @Html.TextBoxFor(x => x.resim, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>kayitTarihi</label>
+            @Html.TextBoxFor(x => x.kayitTarihi, new { @class = "form-control", type = "date" })
+        </div>
+        <div class="form-group">
+            <label>puan</label>
+            @Html.TextBoxFor(x => x.puan, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>aciklama</label>
+            @Html.TextBoxFor(x => x.aciklama, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>adres</label>
+            @Html.TextBoxFor(x => x.adres, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>sehirId</label>
+            @Html.TextBoxFor(x => x.sehirId, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>ilceId</label>
+            @Html.TextBoxFor(x => x.ilceId, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Update</button>
+        </div>
+    </div>
+}

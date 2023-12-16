@@ -1,0 +1,28 @@
+﻿@model List<sinavproje.Models.dbbirim>
+
+@{
+    ViewBag.Title = "birimList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table>
+    <tr>
+        <th>Birim Adı:</th>
+        <th>Açıklama:</th>
+        <th>Insert</th>
+        <th>Delete</th>
+        <th>Update</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.birim</td>
+            <td>@item.aciklama</td>
+            <td><a href="/Birim/Index" class="btn btn-primary">Insert</a></td>
+            <td><a href="/Birim/BirimDelete/@item.Id" class="btn btn-danger">Delete</a></td>
+            <td><a href="/Birim/BirimUpdate/@item.Id" class="btn btn-success">Update</a></td>
+        </tr>
+    }
+</table>
+

@@ -1,0 +1,34 @@
+﻿@model sinavproje.Models.dbSatislar
+@{
+    ViewBag.Title = "SatisUpdate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Satış Update</h2>
+
+
+@using (Html.BeginForm("SatisUpdate", "Satislar", FormMethod.Post))
+{
+    <div class="container">
+        <div class="form-group">
+            <label>Ürün ID:</label>
+            @Html.DropDownListFor(x => x.urunId, (List<SelectListItem>)ViewBag.urun, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label>Toplam Fiyat:</label>
+            @Html.TextBoxFor(x => x.toplamFiyat, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Tarih:</label>
+            @Html.TextBoxFor(x => x.tarih, new { @class = "form-control", type = "date" })
+        </div>
+        <div class="form-group">
+            <label>Saat:</label>
+            @Html.TextBoxFor(x => x.saat, new { @class = "form-control", type = "date" })
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </div>
+}

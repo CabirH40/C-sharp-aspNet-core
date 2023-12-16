@@ -1,0 +1,49 @@
+﻿@model List<sinavproje.Models.dbuser>
+
+
+@{
+    ViewBag.Title = "AuserList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>userName</th>
+            <th>userSurname</th>
+            <th>sehirId</th>
+            <th>ilceId</th>
+            <th>departmandId</th>
+            <th>maas</th>
+            <th>izin</th>
+            <th>password</th>
+            <th>role</th>
+            <th>Delete</th>
+            <th>Update</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.userName</td>
+            <td>@item.userSurname</td>
+            <td>@item.sehirId</td>
+            <td>@item.ilceId</td>
+            <td>@item.departmandId</td>
+            <td>@item.maas</td>
+            <td>@item.izin</td>
+            <td>@item.password</td>
+            <td>@item.role</td>
+
+
+            <td><a href="/AdminUser/AuserDelete/@item.Id" class="btn btn-danger">Delete</a></td>
+            <td><a href="/AdminUser/AuserUpdate/@item.Id" class="btn btn-success">Update</a></td>
+
+        </tr>
+        }
+    <td><a href="/AdminUser/Index" class="btn btn-primary">Insert</a></td>
+
+    </tbody>
+</table>

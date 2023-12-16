@@ -1,0 +1,108 @@
+﻿@model sinavproje.Models.login
+@{
+    ViewBag.Title = "signup";
+    Layout = "~/Views/Shared/_LayoutWebPages.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kayıt yap</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .signup-container {
+            background-color: #ffffff;
+            width: 300px;
+            margin: 100px auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333333;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Kayıt Sayfası</h2>
+        @using (Html.BeginForm("signup", "Login", FormMethod.Post))
+        {
+            <div>
+                @Html.LabelFor(m => m.name)
+                @Html.TextBoxFor(m => m.name)
+            </div>
+            <div>
+                @Html.LabelFor(m => m.username)
+                @Html.TextBoxFor(m => m.username)
+            </div>
+            <div>
+                @Html.LabelFor(m => m.email)
+                @Html.TextBoxFor(m => m.email)
+            </div>
+            <div>
+                @Html.LabelFor(m => m.password)
+                @Html.PasswordFor(m => m.password)
+            </div>
+
+            <!-- زر التسجيل -->
+            <input type="submit" value="التسجيل" />
+            <p>hesapınız varsa، <a href="@Url.Action("login", "Login")">سجل الدخول الآن</a></p>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+﻿@model sinavproje.Models.dbmusteri
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("musteriInsert", "musteri", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<div class="container">
+    <div class="form-group">
+        <label>musteri Adı: </label>
+        @Html.TextBoxFor(x => x.musteriAdi, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Telefon: </label>
+        @Html.TextBoxFor(x => x.telefon, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Email: </label>
+        @Html.TextBoxFor(x => x.email, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Image: </label>
+        <input type="file" name="file" id="file" style="width: 100%;" />
+    </div>
+
+    <div class="form-group">
+        <label>Kayıt Tarihi: </label>
+        @Html.TextBoxFor(x => x.kayitTarihi, new { @class = "form-control", type = "date" })
+    </div>
+
+    <div class="form-group">
+        <label>Puan: </label>
+        @Html.TextBoxFor(x => x.puan, new { @class = "form-control", step = "0.1" })
+    </div>
+
+    <div class="form-group">
+        <label>Açıklama: </label>
+        @Html.TextAreaFor(x => x.aciklama, new { @class = "form-control", @rows = 4 })
+    </div>
+
+    <div class="form-group">
+        <label>Adres: </label>
+        @Html.TextBoxFor(x => x.adres, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Sehir Id: </label>
+        @Html.TextBoxFor(x => x.sehirId, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Ilçe Id: </label>
+        @Html.TextBoxFor(x => x.ilceId, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary">Insert</button>
+    </div>
+</div>
+}

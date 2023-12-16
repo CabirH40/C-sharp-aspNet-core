@@ -1,0 +1,47 @@
+﻿@model List<sinavproje.Models.dbmusteri>
+
+@{
+    ViewBag.Title = "musteriList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>musteri Adı</th>
+            <th>telefon</th>
+            <th>email</th>
+            <th>resim</th>
+            <th>kayit tarih</th>
+            <th>puna</th>
+            <th>aciklama</th>
+            <th>adres</th>
+            <th>sehirid</th>
+            <th>ilçeid</th>
+            <th>Delete</th>
+            <th>Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.musteriAdi</td>
+                <td>@item.telefon</td>
+                <td>@item.email</td>
+                <td>@item.resim</td>
+                <td>@item.kayitTarihi</td>
+                <td>@item.puan</td>
+                <td>@item.aciklama</td>
+                <td>@item.adres</td>
+                <td>@item.sehirId</td>
+                <td>@item.ilceId</td>
+                <td><a href="/musteri/musteriDelete/@item.Id" class="btn btn-danger">Delete</a></td>
+                <td><a href="@Url.Action("musteriUpdate", "musteri", new { id = item.Id })" class="btn btn-success">Update</a></td>
+            </tr>
+        }
+        <tr>
+            <td colspan="12"><a href="/musteri/Index" class="btn btn-primary">Insert</a></td>
+        </tr>
+    </tbody>
+</table>

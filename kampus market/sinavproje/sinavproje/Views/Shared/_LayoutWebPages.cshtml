@@ -1,0 +1,154 @@
+﻿@model IEnumerable<sinavproje.models.modelmarkakategori>
+@{
+    Layout = null;
+}
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/7ec0bf3f0e.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+    <title>Kampüs Market</title>
+    <link rel="stylesheet" href="~/webPages/01/assets/css_kamus/style.css">
+    <link href="~/webPages/01/assets/css_kamus/hover.css" rel="stylesheet" media="all">
+</head>
+
+
+<header>
+
+
+
+    <div class="container">
+
+        <div class="icons">
+
+            <div class="icon">
+                <a href="/Login/login"><i class="fa-solid fa-user fa-2xl" style="color: #3c3633;"></i></a>
+            </div>
+
+
+            <span id="cart-icon"></span>
+            <div class="icon">
+                <a href="/sepet/sepetMusteri/"><i class="fa-solid fa-cart-shopping fa-2xl" style="color: #3c3633;"></i></a>
+                <span>
+                    @Session["CartCount"]
+                </span>
+                </span>
+
+
+
+                <span class="btn btn-dark" style="color: black; font-size: 1.2em;">@Session["UserName"] </span> 
+
+                @if (Session["UserName"] != null)
+                {
+                    <button type="button" onclick="location.href='@Url.Action("Logout", "Login")'" class="btn btn-dark">Sign Out</button>
+                }
+            </div>
+
+
+        </div>
+    </div>
+
+    <div>
+        @using (Html.BeginForm("product", "urunlar", FormMethod.Get))
+        {
+            <div class="container">
+                <div class="search">
+                    @Html.TextBox("search", null, new { @class = "form-control", placeholder = "Aradığınız Ürünler..." })
+                    <button type="submit">Ara</button>
+                    <span class="logocon">
+                        <img src="~/webPages/01/assets/img/Yellow and Black Online Shop Business Logo.jpg" alt="Logo" class="logo-img hvr-pulse-shrink" style="width:70px;height:70px; margin-bottom:1px;">
+
+                    </span>
+                </div>
+            </div>
+        }
+    </div>
+</header>
+<nav>
+    <ul>
+        <li><a href="/urunlar/product" class="active">Tüm Ürünler</a> </li>
+        <li><a href="/urunlar/product?search=I%C3%A7ecek" target="_blank" class="active">İçecekler</a></li>
+        <li><a href="/urunlar/product?search=Temizlik" target="_blank" class="active">Temizlik Malzemeleri</a></li>
+        <li><a href="/urunlar/product?search=Temizlik" target="_blank" class="active">Parfüm</a></li>
+        <li><a href="/urunlar/product" target="_blank" class="active">Meyve</a></li>
+        <li><a href="/urunlar/product?search=Çips" target="_blank" class="active">Çips</a></li>
+        <li><a href="/urunlar/product?search=Tatli" target="_blank" class="active">Yiyecekler</a></li>
+    </ul>
+</nav>
+
+@RenderBody()
+<footer>
+    <section id="newsletter" class="newsletter">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="hm-footer-widget">
+                        <div class="hm-foot-title">
+                            <h4>Kurumsal</h4>
+                        </div>
+                        <div class="hm-foot-menu">
+                            <ul>
+                                <li><a href="/urunlar/product">Ana Sayfa</a></li>
+                                <li><a href="/Login/login">Üye Giriş</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="hm-footer-widget">
+                        <div class="hm-foot-title">
+                            <h4>Ürünler</h4>
+                        </div>
+                        <div class="hm-foot-menu">
+                            <ul>
+                                <li><a href="/urunlar/product">Tüm Ürünler</a></li>
+                                <li><a href="/urunlar/product?search=I%C3%A7ecek">İçecekler</a></li>
+                                <li><a href="/urunlar/product?search=Tatli">Meyve</a></li>
+                                <li><a href="/urunlar/product?search=Temizlik">Parfüm</a></li>
+                                <li><a href="/urunlar/product?search=Tatli">Yiyecekler</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="hm-footer-widget">
+                        <div class="hm-foot-title">
+                            <h4>Hızlı Erişim</h4>
+                        </div>
+                        <div class="hm-foot-menu">
+                            <ul>
+                                <li><a href="#">Yeni Ürünler</a></li>
+                                <li><a href="#">İndirimdeki Ürünler</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="hm-footer-widget">
+                        <div class="hm-foot-title">
+                            <h4>Bize Ulaşın</h4>
+                        </div>
+                        <div class="hm-foot-para">
+                            <p><i class="fa fa-phone" aria-hidden="true"></i><a href="tel:+123456789"> 05317479702</a></p>
+                            <p><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:info@domain.com"> info@domain.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>
+
+<script src="https://kit.fontawesome.com/7ec0bf3f0e.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
+</html>
